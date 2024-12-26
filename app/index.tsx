@@ -255,7 +255,7 @@ export default function App(): JSX.Element {
 
         <Animated.View
           style={[
-            styles.inputContainer,
+            styles.inputContainer as ViewStyle,
             {
               height: containerHeight,
               opacity: viewMessage ? 0 : 100,
@@ -281,13 +281,19 @@ export default function App(): JSX.Element {
         </Animated.View>
 
         <View
-          style={!viewMessage ? (styles.divider as ViewStyle) : styles.hidden}
+          style={
+            !viewMessage
+              ? (styles.divider as ViewStyle)
+              : (styles.hidden as ViewStyle)
+          }
         />
 
         <View style={styles.receiveContainer as ViewStyle}>
           <TouchableOpacity
             style={
-              !viewMessage ? (styles.receiveButton as ViewStyle) : styles.hidden
+              !viewMessage
+                ? (styles.receiveButton as ViewStyle)
+                : (styles.hidden as ViewStyle)
             }
             onPress={receiveFromVoid}
           >
@@ -298,7 +304,11 @@ export default function App(): JSX.Element {
         </View>
 
         <TouchableOpacity
-          style={viewMessage ? (styles.backButton as ViewStyle) : styles.hidden}
+          style={
+            viewMessage
+              ? (styles.backButton as ViewStyle)
+              : (styles.hidden as ViewStyle)
+          }
           onPress={() => setViewMessage(false)}
         >
           <Text style={styles.buttonText as TextStyle}>BACK</Text>
